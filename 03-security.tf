@@ -56,16 +56,6 @@ resource "aws_security_group" "accepter_security_group" {
   description = "accepter security group"
   vpc_id      = aws_vpc.accepter_vpc.id
 
-  dynamic "ingress" {
-    for_each = var.inbound_ports
-    content {
-      from_port   = ingress.value
-      to_port     = ingress.value
-      protocol    = "tcp"
-      cidr_blocks = [aws_vpc.requester_vpc.cidr_block]
-    }
-  }
-
   # Allow inbound traffic from Requester CIDR block
   ingress {
     from_port   = 0
