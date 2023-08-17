@@ -57,21 +57,21 @@ resource "aws_route_table" "route_table_requester" {
 }
 
 # Create Internet Gateway for Accepter
-resource "aws_internet_gateway" "accepter-igw" {
-  vpc_id = aws_vpc.accepter_vpc.id
-  tags = {
-    Name = "accepter-igw"
-  }
-}
+#resource "aws_internet_gateway" "accepter-igw" {
+#  vpc_id = aws_vpc.accepter_vpc.id
+#  tags = {
+#    Name = "accepter-igw"
+#  }
+#}
 
 # Create Route Table for Accepter
 resource "aws_route_table" "route_table_accepter" {
   vpc_id = aws_vpc.accepter_vpc.id
 
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.accepter-igw.id
-  }
+  #route {
+  #  cidr_block = "0.0.0.0/0"
+  #  gateway_id = aws_internet_gateway.accepter-igw.id
+  #}
 
   route {
     cidr_block                = "10.0.5.0/24"
